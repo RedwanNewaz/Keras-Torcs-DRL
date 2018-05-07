@@ -87,47 +87,8 @@ def save(agent):
     agent.save_weights('{}/ddpg_{}_final_weights.h5f'.format(exp_dir,ENV_NAME), overwrite=True)
     # agent.test(env, nb_episodes=5, visualize=True, nb_max_episode_steps=nb_max_episode_steps)
 
-def train(drlm):
-    actor = drlm.actor
-    critic = drlm.critic
-    nb_actions =drlm.nb_actions
-    action_input = drlm.action_input
-    processor = TorcsProcessor()
-
-    #load weights
-
-    print('loading weights ', load_weights, '.' * 60)
-
-    if load_weights:
-
-        actor.load_weights(alw)
-        critic.load_weights(clw)
-
-
-    # callbacks
-    monitor = 'episode_reward'
-    mode = 'max'
-    filename = exp_dir+'/checkpoints/weights.{epoch:02d}-{episode_reward:.2f}.hdf5'
-    check_point = ModelCheckpoint(filepath=filename, monitor=monitor, verbose=1, save_best_only=True,
-                                  mode=mode, period=weight_save_interval, save_weights_only=True)
-    tensor_board = TensorBoard(log_dir='{}/graph/'.format(exp_dir))
-
-
-    memory = SequentialMemory(limit=100000, window_length=1)
-    random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=.15, mu=0., sigma=.3)
-    agent = DDPGAgent(nb_actions=nb_actions, batch_size=batch_size,
-                      actor=actor, critic=critic, critic_action_input=action_input,
-                      memory=memory, processor = processor,nb_steps_warmup_critic=nb_steps_warmup_critic,
-                      nb_steps_warmup_actor=nb_steps_warmup_actor,
-                      random_process=random_process, gamma=.99, target_model_update=1e-3)
-    agent.compile(Adam(lr=.001, clipnorm=1.), metrics=[loss])
-    agent.fit(env, nb_steps=epochs, visualize=False, verbose=1, nb_max_episode_steps=nb_max_episode_steps,
-              callbacks=[ tensor_board , check_point])
-
-    return agent
-
-def test(drlm):
-    print('tesing','.'*60)
+def get_agent(drlm):
+    print('tesing', '.' * 60)
     actor = drlm.actor
     critic = drlm.critic
     nb_actions = drlm.nb_actions
@@ -142,7 +103,6 @@ def test(drlm):
         actor.load_weights(alw)
         critic.load_weights(clw)
 
-
     memory = SequentialMemory(limit=100000, window_length=1)
     random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=.15, mu=0., sigma=.3)
     agent = DDPGAgent(nb_actions=nb_actions, batch_size=batch_size,
@@ -151,6 +111,24 @@ def test(drlm):
                       nb_steps_warmup_actor=nb_steps_warmup_actor,
                       random_process=random_process, gamma=.99, target_model_update=1e-3)
     agent.compile(Adam(lr=.001, clipnorm=1.), metrics=[loss])
+    return agent
+
+def train(drlm):
+    agent = get_agent(drlm)
+    # callbacks
+    monitor = 'episode_reward'
+    mode = 'max'
+    filename = exp_dir+'/checkpoints/weights.{epoch:02d}-{episode_reward:.2f}.hdf5'
+    check_point = ModelCheckpoint(filepath=filename, monitor=monitor, verbose=1, save_best_only=True,
+                                  mode=mode, period=weight_save_interval, save_weights_only=True)
+    tensor_board = TensorBoard(log_dir='{}/graph/'.format(exp_dir))
+    agent.fit(env, nb_steps=epochs, visualize=False, verbose=1, nb_max_episode_steps=nb_max_episode_steps,
+              callbacks=[ tensor_board , check_point])
+
+    return agent
+
+def test(drlm):
+    agent = get_agent(drlm)
     agent.test(env, nb_episodes=5, visualize=True, nb_max_episode_steps=nb_max_episode_steps)
 
 if __name__ == '__main__':

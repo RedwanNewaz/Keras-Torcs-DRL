@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad75dd51-ac9d-47eb-8ec6-5da5d4f95d32" name="Default" comment="" />
+    <list default="true" id="ad75dd51-ac9d-47eb-8ec6-5da5d4f95d32" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +19,14 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1905">
-              <caret line="164" selection-start-line="164" selection-end-line="164" />
+            <state relative-caret-position="325">
+              <caret line="89" selection-start-line="89" selection-end-line="89" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#3105#4641#0" />
+                <element signature="e#2677#2872#0" />
+                <element signature="e#3109#4093#0" />
+                <element signature="e#4126#4717#0" />
+                <element signature="e#4688#4777#0" />
               </folding>
             </state>
           </provider>
@@ -73,6 +78,9 @@
       <replace>BatchNormalization()</replace>
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -85,8 +93,8 @@
         <option value="$PROJECT_DIR$/dev/ac_v2.py" />
         <option value="$PROJECT_DIR$/Exp.log" />
         <option value="$PROJECT_DIR$/param.yaml" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/lib/torcs/gym_torcs.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -103,6 +111,7 @@
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -208,7 +217,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="File Transfer" order="7" visible="true" weight="0.3278302" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32882273" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32882273" />
       <window_info anchor="right" id="Remote Host" order="3" />
@@ -253,7 +262,10 @@
           <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#3105#4641#0" />
+            <element signature="e#2677#2872#0" />
+            <element signature="e#3109#4093#0" />
+            <element signature="e#4126#4717#0" />
+            <element signature="e#4688#4777#0" />
           </folding>
         </state>
       </provider>
@@ -271,7 +283,10 @@
           <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#3105#4641#0" />
+            <element signature="e#2677#2872#0" />
+            <element signature="e#3109#4093#0" />
+            <element signature="e#4126#4717#0" />
+            <element signature="e#4688#4777#0" />
           </folding>
         </state>
       </provider>
@@ -296,7 +311,10 @@
           <caret line="42" column="21" lean-forward="true" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#3105#4641#0" />
+            <element signature="e#2677#2872#0" />
+            <element signature="e#3109#4093#0" />
+            <element signature="e#4126#4717#0" />
+            <element signature="e#4688#4777#0" />
           </folding>
         </state>
       </provider>
@@ -307,7 +325,10 @@
           <caret line="98" column="28" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#3105#4641#0" />
+            <element signature="e#2677#2872#0" />
+            <element signature="e#3109#4093#0" />
+            <element signature="e#4126#4717#0" />
+            <element signature="e#4688#4777#0" />
           </folding>
         </state>
       </provider>
@@ -423,11 +444,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
-          <caret line="164" selection-start-line="164" selection-end-line="164" />
+        <state relative-caret-position="325">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#3105#4641#0" />
+            <element signature="e#2677#2872#0" />
+            <element signature="e#3109#4093#0" />
+            <element signature="e#4126#4717#0" />
+            <element signature="e#4688#4777#0" />
           </folding>
         </state>
       </provider>
