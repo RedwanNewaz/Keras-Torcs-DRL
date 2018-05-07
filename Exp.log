@@ -1,0 +1,15 @@
+Experiment 1:
+    model: ac_v1 (with dorpoout and max 300 hid_dim)
+    epochs: 200000
+    model_weight_save: every 200 epochs (1)
+    training time: around 30 mins
+    loss: mse
+
+Experiment 2:
+    model: ac_v2 (with batch_normalization and max 300*2 hid_dim)
+    epochs: 200000*25
+    model_weight_save: every 200 epochs (1)
+    training time: around ? mins
+    loss: mse
+    ssh stops at 220 epochs
+

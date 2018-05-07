@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="redwan@54.84.61.152:22" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="redwan@54.84.61.152:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Keras-Torcs-DRL" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="ssh://robond@192.168.56.101:22/home/robond/miniconda3/bin/python">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/robond/project/Keras-Torcs-DRL" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
