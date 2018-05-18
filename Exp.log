@@ -5,11 +5,27 @@ Experiment 1:
     training time: around 30 mins
     loss: mse
 
-Experiment 2:
-    model: ac_v2 (with batch_normalization and max 300*2 hid_dim)
+Experiment 1.1:
+    model: ac_v1 (with dorpoout and max 300 hid_dim)
     epochs: 200000*25
     model_weight_save: every 200 epochs (1)
     training time: around ? mins
     loss: mse
     ssh stops at 220 epochs
 
+Experiment 5:
+    model: ac_v3 (with dorpoout and max 300 hid_dim)
+    epochs: 200000*25
+    model_weight_save: every 200 epochs (1)
+    training time: around ? mins
+    loss: mse
+    learning rate .001
+
+Experiment 6:
+    model: ac_v2 (with batch_normalization and max 300*2 hid_dim)
+    epochs: 1000000
+    model_weight_save: every 500 epochs (1)
+    training time: around ? mins
+    loss: mae
+    clipping reward is introduced
+    learning rate is .0001

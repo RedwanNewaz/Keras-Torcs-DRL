@@ -1,24 +1,25 @@
 state_size: 29
 nb_actions: 3
-seed: 1337
-exp: 'result/exp3'
+seed: 150
+exp: 'result/exp7'
 
 Torcs:
   name: 'Torcs-v0'
   vision: false
   throttle: true
   gear_change: false
+  track: 'practice.xml'
 
 Training:
-  epochs: 5000000
+  epochs: 50000
   batch_size: 32
   loss_metrics: 'mse'
-  nb_steps_warmup_critic: 100000
-  nb_steps_warmup_actor: 100000
-  nb_max_episode_steps: 100000
-  weight_save_interval: 100
+  nb_steps_warmup_critic: 100
+  nb_steps_warmup_actor: 100
+  nb_max_episode_steps: 10000
+  weight_save_interval: 200
 
 model:
-  load_weight: 1
-  actor_weight: 'result/exp3/weights.600-45.52_actor.hdf5'
-  critic_weight: 'result/exp3/weights.600-45.52_critic.hdf5'
+  load_weight: 0
+  actor_weight: 'result/exp4/ddpg_Torcs-v0_final_weights_actor.h5f'
+  critic_weight: 'result/exp4/ddpg_Torcs-v0_final_weights_critic.h5f'

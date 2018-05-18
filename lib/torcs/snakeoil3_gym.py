@@ -61,7 +61,7 @@ import time
 PI= 3.14159265359
 
 data_size = 2**17
-_practice_path = '/home/redwan/Keras-Torcs-DRL/lib/torcs/practice.xml'
+_practice_path = '/home/averma/torcs/torcs-1.3.7/src/raceman/practice.xml'
 # Initialize help messages
 ophelp=  'Options:\n'
 ophelp+= ' --host, -H <host>    TORCS server host. [localhost]\n'
@@ -115,8 +115,14 @@ def bargraph(x,mn,mx,w,c='X'):
     pnc= int(posnonpu/upw)*'_'
     return '[%s]' % (nnc+npc+ppc+pnc)
 
-class Client():
+class Client(object):
     def __init__(self,H=None,p=None,i=None,e=None,t=None,s=None,d=None,vision=False):
+
+        #################################### modified by redwan
+        self.__gui = vision
+        self.__timeout = 10000
+        self.__quickrace_xml_path = _practice_path
+
         # If you don't like the option defaults,  change them here.
         self.vision = vision
 
@@ -140,6 +146,7 @@ class Client():
         self.R= DriverAction()
         self.setup_connection()
 
+
     def setup_connection(self):
         # == Set Up UDP Socket ==
         try:
@@ -150,7 +157,7 @@ class Client():
         # == Initialize Connection To Server ==
         self.so.settimeout(1)
 
-        n_fail = 1
+        n_fail = 3
         while True:
             # This string establishes track sensor angles! You can customize them.
             #a= "-90 -75 -60 -45 -30 -20 -15 -10 -5 0 5 10 15 20 30 45 60 75 90"
@@ -165,30 +172,36 @@ class Client():
                 print('failed here')
                 sys.exit(-1)
             sockdata= str()
+
             try:
                 sockdata,addr= self.so.recvfrom(data_size)
                 sockdata = sockdata.decode('utf-8')
             except socket.error as emsg:
-                print("Waiting for server on %d............" % self.port)
-                print("Count Down : " + str(n_fail))
-                if n_fail < 0:
-                    print("relaunch torcs")
-                    os.system('pkill torcs')
-                    time.sleep(1.0)
-
-                    if self.vision is False:
-                        os.system('torcs -s -r {} -nofuel -nodamage -nolaptime &'.format(_practice_path))
-                    else:
-                        os.system('torcs -s -r {} -nofuel -nodamage -nolaptime -vision &'.format(_practice_path))
-
-                    #time.sleep(1.0)
-                    #os.system('sh autostart.sh')
-                    n_fail = 1
                 n_fail -= 1
+                if n_fail == 0:
+                    # print("Server didn't answer, sending restart signal")
+                    self._restart()
+                    break
+                # print("Waiting for server on %d............" % self.port)
+                # print("Count Down : " + str(n_fail))
+                # if n_fail < 0:
+                #     print("relaunch torcs")
+                #     os.system('pkill torcs')
+                #     time.sleep(1.0)
+                #
+                #     if self.vision is False:
+                #         os.system('torcs -s -r {} -nofuel -nodamage -nolaptime &'.format(_practice_path))
+                #     else:
+                #         os.system('torcs -s -r {} -nofuel -nodamage -nolaptime -vision &'.format(_practice_path))
+                #
+                #     #time.sleep(1.0)
+                #     #os.system('sh autostart.sh')
+                #     n_fail = 1
+                # n_fail -= 1
 
             identify = '***identified***'
             if identify in sockdata:
-                print("Client connected on %d.............." % self.port)
+                # print("Client connected on %d.............." % self.port)
                 break
 
     def parse_the_command_line(self):
@@ -231,6 +244,32 @@ class Client():
         if len(args) > 0:
             print('Superflous input? %s\n%s' % (', '.join(args), usage))
             sys.exit(-1)
+
+    @property
+    def restart(self):
+        self._restart()
+
+
+    def _restart(self):
+        os.system('pkill torcs')
+        time.sleep(0.005)
+
+
+        if self.__gui:
+            # if self.__cmd_exists('optirun'):
+            #     os.system('optirun torcs -nofuel -nolaptime -s -t {} >/dev/null &'.format(self.__timeout))
+            # else:
+            # os.system('torcs -nofuel -nolaptime -s -t {} >/dev/null &'.format(self.__timeout))
+            os.system('torcs -s -r {} -nofuel -nodamage -nolaptime &'.format(_practice_path))
+            # time.sleep(2)
+            # os.system('sh autostart.sh')
+        else:
+            os.system('torcs -s -r {} -nofuel -nodamage -nolaptime -vision &'.format(_practice_path))
+            # os.system('torcs -nofuel -nolaptime -t 50000 -r '.format(
+            #     self.__timeout) + self.__quickrace_xml_path + ' >/dev/null &')
+        # print('Server created!')
+        time.sleep(0.005)
+        os.system('sh autostart.sh')
 
     def get_servers_input(self):
         '''Server's input is stored in a ServerState object'''
@@ -324,10 +363,10 @@ class ServerState():
         #'curLapTime',
         #'lastLapTime',
         'stucktimer',
-        #'damage',
+        'damage',
         #'focus',
         'fuel',
-        #'gear',
+        'gear',
         'distRaced',
         'distFromStart',
         #'racePos',
